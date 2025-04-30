@@ -1,0 +1,17 @@
+import os
+from pathlib import Path
+
+
+# Timothy Hyde 2025
+# This script was used to prepend individual numbers to each MIDI file in my custom dataset
+
+folder = Path(r"C:\Users\school\Desktop\kdf_2_complete")  
+start_index = 1209
+
+
+for i, file in enumerate(sorted(folder.glob("*"))):
+    if file.is_file():
+        new_name = f"{start_index + i:04d}_{file.name}"
+        new_path = file.with_name(new_name)
+        file.rename(new_path)
+        print(f"Renamed: {file.name} -> {new_name}")
